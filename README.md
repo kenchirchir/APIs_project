@@ -10,7 +10,9 @@ The **Weather Dashboard** is an interactive web application that allows users to
 - **Responsive Design**: Works on desktops, tablets, and mobile devices.
 
 ## Live Demo
-[Click here to view the live demo](#) *(Replace with the live link if hosted online)*
+## Live Demo
+[![Watch the demo on YouTube](https://img.youtube.com/vi/CX4ApTZUPYw/0.jpg)](https://youtu.be/CX4ApTZUPYw)
+
 
 ## Technologies Used
 - **HTML5**: Structure and layout of the web app.
