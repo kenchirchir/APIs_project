@@ -29,9 +29,53 @@ async function fetchWeather(city) {
 }
 
 function displayWeather(data) {
+    const { name, sys, main, weather, timezone } = data;
+
+    // Calculate local time for the city
+    const localTime = new Date(Date.now() + timezone * 1000).toLocaleString("en-US", {
+        timeZone: "UTC",
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
     weatherResult.innerHTML = `
-        <h2>${data.name}, ${data.sys.country}</h2>
-        <p>Temperature: ${data.main.temp}°C</p>
-        <p>Weather: ${data.weather[0].description}</p>
+        <h2>${name}, ${sys.country}</h2>
+        <p>Temperature: ${main.temp}°C</p>
+        <p>Weather: ${weather[0].description}</p>
+        <p>Local Time: ${localTime}</p>
     `;
+
+    // Update body class based on weather condition
+    if (weather[0].main === "Clear") {
+        document.body.className = "clear-sky-background";
+        showSun();
+    } else if (weather[0].main === "Rain") {
+        document.body.className = "rainy-background";
+        showRain();
+    } else if (weather[0].main === "Clouds") {
+        document.body.className = "cloudy-background";
+        showClouds();
+    }
+}
+
+function showClouds() {
+    const clouds = document.createElement("div");
+    clouds.className = "clouds";
+    document.body.appendChild(clouds);
+}
+
+function showRain() {
+    const rain = document.createElement("div");
+    rain.className = "rain";
+    document.body.appendChild(rain);
+}
+
+function showSun() {
+    const sun = document.createElement("div");
+    sun.className = "sun";
+    document.body.appendChild(sun);
 }
